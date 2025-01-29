@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>CF AI REST API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.lime.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/main.js"></script>
 </head>
-<body>
-    
+
+<body class="container-fluid">
+    <select class="models" aria-label="Select model..." required form="chat-form-1">
+        <option selected disabled value="">
+            Select model...
+        </option>
+    </select>
+    <div class="messages"></div>
+    <form id="chat-form-1" class="chat-form">
+        <fieldset class="grid prompt">
+            <textarea class="message" rows="2" placeholder="Type a message..." required></textarea>
+            <button type="submit">Run</button>
+            <button type="reset" class="secondary">Clear</button>
+        </fieldset>
+    </form>
+    <footer>
+        <a class="repo-link" href="https://github.com/jorgeferdez/cf-ai-rest-api">
+            <span>github.com/jorgeferdez/cf-ai-rest-api</span>
+        </a>
+    </footer>
 </body>
+
 </html>

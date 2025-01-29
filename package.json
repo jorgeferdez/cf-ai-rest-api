@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "wrangler pages dev ./pages"
+    "dev": "wrangler pages dev ./pages --ip 0.0.0.0"
   },
   "author": "",
   "license": "MIT",
   "description": "",
   "devDependencies": {
+    "semistandard": "^17.0.0",
     "wrangler": "^3.101.0"
+  },
+  "dependencies": {
+    "itty-router": "^5.0.18"
   }
 }
