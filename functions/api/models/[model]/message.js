@@ -4,6 +4,7 @@ export async function onRequestPost (context) {
   const model = models.find((value) => { return value.model === decodeURIComponent(context.params.model); });
   const json = await context.request.json();
   const run = async () => {
+    // El proveedor es Cloudflare
     if (model.provider === 'Cloudflare') {
       const messages = [];
       if (json.systemMessage) {
@@ -18,6 +19,8 @@ export async function onRequestPost (context) {
       });
       return Response.json(answer);
     }
+
+    // El proveedor es Google
     if (model.provider === 'Google') {
       const contents = [];
       if (json.systemMessage) {
