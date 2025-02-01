@@ -11,8 +11,5 @@
   "devDependencies": {
     "semistandard": "^17.0.0",
     "wrangler": "^3.101.0"
-  },
-  "dependencies": {
-    "itty-router": "^5.0.18"
   }
 }

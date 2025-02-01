@@ -1,3 +1,3 @@
 export async function onRequest (context) {
-  return Response.json({ message: 'Not found' }, { status: 404 });
+  return Response.json({ message: 'No encontrado' }, { status: 404 });
 }

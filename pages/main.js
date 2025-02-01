@@ -5,7 +5,7 @@ let controller = new AbortController();
 document.addEventListener('DOMContentLoaded', async function (event) {
   // Cargar modelos desde el backend (functions/api/models/index.js)
   // y agregarlos al select
-  const response = await fetch('/api/models');
+  const response = await fetch('/api/models'); // Si da error dejo que el excepcion fluya hacia arriba
   const data = await response.json();
   const select = document.querySelector('.models');
   for (const e of data) {
@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async function (event) {
   const updateSubmitButtonState = (busy) => {
     const button = document.querySelector('[type="submit"]');
     button.textContent = busy ? 'Enviando...' : 'Enviar';
-    // button.setAttribute('aria-busy', busy);
   };
 
   // Agregar eventos al form
@@ -49,11 +48,11 @@ document.addEventListener('DOMContentLoaded', async function (event) {
     // Cambiar el estado del boton a ocupado
     updateSubmitButtonState(true);
     try {
-      // Realizar la solicitud al backend para procesar el mensaje
+      // Realizar la solicitud al backend
       const response = await fetch('api/models/' + encodeURIComponent(selectedModel) + '/message', {
         body: JSON.stringify({ systemMessage, messages, content: userContent }),
         method: 'POST',
-        signal: controller.signal
+        signal: controller.signal // Cuando se llama a abort(), fetch lanza una excepción "AbortError".
       });
 
       // Si la respuesta no es exitosa, restablecer el estado y abortar la solicitud
