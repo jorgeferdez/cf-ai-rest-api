@@ -3,9 +3,8 @@ let messages = [];
 let controller = new AbortController();
 
 document.addEventListener('DOMContentLoaded', async function (event) {
-  // Cargar modelos desde el backend (functions/api/models/index.js)
-  // y agregarlos al select
-  const response = await fetch('/api/models'); // Si da error dejo que el excepcion fluya hacia arriba
+  // Cargar modelos desde el backend y agregarlos al select
+  const response = await fetch('/api/models'); // Si da error dejo que la excepción fluya hacia arriba
   const data = await response.json();
   const select = document.querySelector('.models');
   for (const e of data) {
@@ -15,13 +14,13 @@ document.addEventListener('DOMContentLoaded', async function (event) {
     select.insertAdjacentElement('beforeend', option);
   }
 
-  // Limpiar todos los controles del form cuando el modelo seleccionado cambie
+  // Limpiar todos los controles del formulario cuando el modelo seleccionado cambie
   document.querySelector('.models').addEventListener('change', function (event) {
     // Abortar la solicitud
     controller.abort();
     controller = new AbortController();
 
-    // Restabler las variables
+    // Restablecer las variables
     systemMessage = '';
     messages = [];
     document.querySelector('.messages').innerHTML = '';
@@ -30,13 +29,13 @@ document.addEventListener('DOMContentLoaded', async function (event) {
     updateSubmitButtonState(false);
   });
 
-  // Funcion para actualizar el estado del boton "submit"
+  // Función para actualizar el estado del botón "submit"
   const updateSubmitButtonState = (busy) => {
     const button = document.querySelector('[type="submit"]');
     button.textContent = busy ? 'Enviando...' : 'Enviar';
   };
 
-  // Agregar eventos al form
+  // Agregar eventos al formulario
   // Evento submit
   document.querySelector('.prompt-form').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async function (event) {
     const message = document.querySelector('.message');
     const userContent = message.value;
 
-    // Cambiar el estado del boton a ocupado
+    // Cambiar el estado del botón a ocupado
     updateSubmitButtonState(true);
     try {
       // Realizar la solicitud al backend
@@ -55,11 +54,9 @@ document.addEventListener('DOMContentLoaded', async function (event) {
         signal: controller.signal // Cuando se llama a abort(), fetch lanza una excepción "AbortError".
       });
 
-      // Si la respuesta no es exitosa, restablecer el estado y abortar la solicitud
+      // Si la respuesta no es exitosa lanza una excepción
       if (response.status !== 200) {
-        updateSubmitButtonState(false);
-        controller = new AbortController();
-        return;
+        throw new Error('Error al realizar la solicitud al backend.');
       }
 
       // Parsear la respuesta JSON y añadir los mensajes al historial
@@ -86,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async function (event) {
       document.querySelector('.messages').insertAdjacentHTML('beforeend', hr + '🗣️' + '<div class="user-message">' + parser.render(userContent) + '</div>' +
         '<hr />✨<div class="assistant-message">' + parser.render(assistantContent) + '</div>');
 
-      // Restablecer el estado del boton y limpiar el campo de mensaje
+      // Restablecer el estado del botón y limpiar el campo de mensaje
       updateSubmitButtonState(false);
       message.value = '';
       message.focus();
