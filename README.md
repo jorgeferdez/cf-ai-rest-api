@@ -1,4 +1,30 @@
-# cf-ai-rest-api
+# **cf-ai-rest-api: Proyecto de Aprendizaje para Principiantes**  
+
+**Descripción:**  
+cf-ai-rest-api es un proyecto web súper simple diseñado para principiantes que quieren aprender a construir una interfaz de chat con tecnologías web modernas. Este proyecto replica de forma básica la funcionalidad de chats AI como ChatGPT y Google AI Studio, permitiendo a los usuarios comunicarse con modelos de inteligencia artificial a través de una API segura almacenada en **Cloudflare Workers**.  
+
+**Características:**  
+✅ **Simplicidad** – Código corto, limpio y fácil de entender.  
+✅ **Frontend ligero** – HTML, CSS y JavaScript puro, sin frameworks.  
+✅ **Backend serverless** – Cloudflare Workers para manejar las solicitudes de la API de forma segura.  
+✅ **Stateless** – No guarda información en bases de datos ni en el disco, asegurando privacidad y facilidad de despliegue.  
+✅ **Historial en memoria** – El historial de conversación se mantiene en la sesión del navegador.  
+✅ **Soporte para múltiples modelos** – Se puede configurar para usar diferentes APIs de IA.  
+✅ **Responsivo** – Diseño adaptable para PC y móviles.  
+
+**Tecnologías utilizadas:**  
+- **Frontend:** HTML, CSS y JavaScript  
+- **Backend:** Cloudflare Workers  
+- **Seguridad:** API key protegida en el entorno de Cloudflare  
+
+**Objetivos de aprendizaje:**  
+🔹 Cómo estructurar un proyecto web simple con HTML, CSS y JS.  
+🔹 Manejar peticiones HTTP a una API de IA.  
+🔹 Almacenar y gestionar una API key de forma segura en Cloudflare Workers.  
+🔹 Implementar historial de conversación sin base de datos.  
+🔹 Adaptar el diseño para que sea responsivo en diferentes dispositivos.  
+
+🚀 **Ideal para quienes quieren aprender a construir una aplicación funcional sin depender de bases de datos ni servidores tradicionales.**
 
 ### Estructura de carpetas y archivos
 
@@ -28,3 +54,6 @@
         index.html
         main.js
         styles.css
+```
+
+EOF
